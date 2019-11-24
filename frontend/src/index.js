@@ -1,19 +1,27 @@
 import {createStore} from 'redux'
+import reducer from './reducer'
+import {inc, dec, rnd} from './actions'
 
-function reducer(state, action) {
-    if(state === undefined) {
-        return 0;
-    }
-    switch(action.type) {
-        case 'INC': 
-            return state + 1;
-        default:
-            return state;
-    }
-}
+
+
 let store = createStore(reducer)
-console.log(store.getState()) // 1-й вызов, инициализация
-store.dispatch({type: 'INC'})
-store.dispatch({type: 'INC'})
-console.log(store.getState()) // 2-й вызов, измененного store
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
+
+
+document.getElementById('inc')
+    .addEventListener('click', () => store.dispatch(inc()))
+document.getElementById('dec')
+    .addEventListener('click', () => store.dispatch(dec()))
+document.getElementById('rnd')
+    .addEventListener('click', () => {
+        const payload = Math.floor(Math.random() * 10)
+        console.log(payload)
+        store.dispatch(rnd(payload))
+    })
+
+const update = () => {
+    document.getElementById('counter')
+        .innerHTML = store.getState()
+}
+
+store.subscribe(update) 
