@@ -1,4 +1,4 @@
-export default function reducer(state, action) {
+export default function reducer(state = 0, action) {
     if(state === undefined) {
         return 0;
     }
