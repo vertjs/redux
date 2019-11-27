@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import * as actions from '../actions'
 
 function Counter({counter, inc, dec, rnd}) {
@@ -20,16 +19,4 @@ const mapStateToProps = (st) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  const {inc, dec, rnd} = bindActionCreators(actions, dispatch)
-  return {
-    inc,
-    dec,
-    rnd: () => {
-      let randomValue = Math.floor(Math.random() * 10)
-      rnd(randomValue)
-    },
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default connect(mapStateToProps, actions)(Counter)

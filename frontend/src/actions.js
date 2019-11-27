@@ -7,5 +7,9 @@ export function dec() {
 }
 
 export function rnd(payload) {
-    return {type: 'RND', payload}
+    let randomValue = Math.floor(Math.random() * 10)
+    return {
+        type: 'RND', 
+        payload: randomValue
+    }
 }
